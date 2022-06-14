@@ -1,0 +1,55 @@
+aipKey: 6AjcSIfASrWNGVCA4UfxMnBwHFfAuWSI
+
+req: city name
+curl -X GET "http://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=6AjcSIfASrWNGVCA4UfxMnBwHFfAuWSI&q=tel%20aviv"
+curl -X GET "http://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=6AjcSIfASrWNGVCA4UfxMnBwHFfAuWSI&q=[USER SEARCH]"
+
+Res: JSON city name
+[
+  {
+    "Version": 1,
+    "Key": "215854",
+    "Type": "City",
+    "Rank": 31,
+    "LocalizedName": "Tel Aviv",
+    "Country": {
+      "ID": "IL",
+      "LocalizedName": "Israel"
+    },
+    "AdministrativeArea": {
+      "ID": "TA",
+      "LocalizedName": "Tel Aviv"
+    }
+  }
+]
+
+Req: city temp
+curl -X GET "http://dataservice.accuweather.com/currentconditions/v1/215854?apikey=6AjcSIfASrWNGVCA4UfxMnBwHFfAuWSI"
+curl -X GET "http://dataservice.accuweather.com/currentconditions/v1/[CITY KEY]?apikey=6AjcSIfASrWNGVCA4UfxMnBwHFfAuWSI"
+
+Res: JSON city temp
+[
+  {
+    "LocalObservationDateTime": "2022-06-13T15:33:00+03:00",
+    "EpochTime": 1655123580,
+    "WeatherText": "Mostly sunny",
+    "WeatherIcon": 2,
+    "HasPrecipitation": false,
+    "PrecipitationType": null,
+    "IsDayTime": true,
+    "Temperature": {
+      "Metric": {
+        "Value": 26.6,
+        "Unit": "C",
+        "UnitType": 17
+      },
+      "Imperial": {
+        "Value": 80,
+        "Unit": "F",
+        "UnitType": 18
+      }
+    },
+    "MobileLink": "http://www.accuweather.com/en/il/tel-aviv/215854/current-weather/215854?lang=en-us",
+    "Link": "http://www.accuweather.com/en/il/tel-aviv/215854/current-weather/215854?lang=en-us"
+  }
+]
