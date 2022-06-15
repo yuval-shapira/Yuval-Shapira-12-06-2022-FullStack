@@ -3,10 +3,10 @@ import CitiesList from "./CitiesList.js";
 import Weather from "./Weather.js";
 import addToFavoritesAPI from "../api/AddToFavoritesAPI.js";
 import getCitiesListAPI from "../api/CitiesListAPI.js";
-import getCityDataAPI from "../api/CityDataAPI.js";
+import getCityWeatherAPI from "../api/CityWeatherAPI.js";
 
 export default function MainScreen() {
-  const [citySearch, setCitySearch] = React.useState('');
+  const [citySearch, setCitySearch] = React.useState("");
   const [citiesListAcc, setCitiesListAcc] = React.useState(null);
   const [cityData, setCityData] = React.useState(null);
 
@@ -16,34 +16,49 @@ export default function MainScreen() {
   }
   async function handleFormSubmit(e) {
     e.preventDefault();
+    if(e.target.value !== ""){
     const cities = await getCitiesListAPI(citySearch);
-    (cities) ? setCitiesListAcc(cities) : console.log("No cities found");
+    cities ? setCitiesListAcc(cities) : window.alert("No city found");}
   }
 
   async function handleCityClick(cityKey, cityName) {
-    //Call to server to get weather data
-    const cityDetails = await getCityDataAPI(cityKey);
-    if(cityDetails) {
+
+    const cityDetails = await getCityWeatherAPI(cityKey);
+    if (cityDetails) {
       cityDetails.LocalizedName = cityName;
       cityDetails.Key = cityKey;
-      setCityData(cityDetails)
-    }else{
-      console.log("No city found");
+      setCityData(cityDetails);
+    } else {
+      window.alert("No city found");
     }
   }
   async function addToFavorites(cityData) {
     const response = await addToFavoritesAPI(cityData);
-    console.log(response);
   }
-  return (<>
-      <h1>Main Screen</h1>
+  return (
+    <>
       <form onSubmit={handleFormSubmit}>
-        <input type="text" placeholder="City Name" value={citySearch} onChange={handleCityChange} />
+        <input
+          type="text"
+          placeholder="City Name"
+          value={citySearch}
+          onChange={handleCityChange}
+        />
         <button type="submit">Submit</button>
       </form>
       <div className="grid-container">
-        <div className="weather">{cityData && <Weather cityData={cityData} addToFavorites={addToFavorites}/>}</div>
-        {citiesListAcc && <CitiesList citiesListAcc={citiesListAcc} handleCityClick={handleCityClick}/>}
+        <div className="weather">
+          {cityData && (
+            <Weather cityData={cityData} addToFavorites={addToFavorites} />
+          )}
+        </div>
+        {citiesListAcc && (
+          <CitiesList
+            citiesListAcc={citiesListAcc}
+            handleCityClick={handleCityClick}
+          />
+        )}
       </div>
-    </>);
+    </>
+  );
 }

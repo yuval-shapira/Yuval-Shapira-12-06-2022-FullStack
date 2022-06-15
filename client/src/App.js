@@ -14,7 +14,7 @@ function App() {
         <h1>Weather App</h1>
       </header>
       <main>
-        <button onClick={() => setToggleScreen(toggleScreen === "Main Screen"? "Favorites Screen" : "Main Screen" )}>
+        <button className="toggle" onClick={() => setToggleScreen(toggleScreen === "Main Screen"? "Favorites Screen" : "Main Screen" )}>
           {toggleScreen === "Main Screen"? "Favorites Screen" : "Main Screen" }
         </button>
         {toggleScreen === "Main Screen" && <MainScreen></MainScreen>} 

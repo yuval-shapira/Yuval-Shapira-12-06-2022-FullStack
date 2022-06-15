@@ -1,7 +1,12 @@
-.App {
-  text-align: center;
+*{
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
-.grid-container{
+.grid-container {
   display: grid;
   grid-template-columns: 70% 30%;
   justify-content: space-evenly;
@@ -9,16 +14,28 @@
   grid-gap: 10px;
   padding: 10px;
 }
-.city{
+.city {
   cursor: pointer;
+  list-style: none;
+  margin: 10px;
+  padding: 10px;
+  min-width: 120px;
+  border-radius: 5px;
+  background-color: #5583df;
+  color: white;
 }
-form{
+.city:hover {
+  background-color: #2f6be3;
+}
+form {
   display: flex;
   justify-content: center;
 }
+main {
+  margin-left: 20px;
+}
 .App-header {
-  background-color: #282c34;
-  /* min-height: 100vh; */
+  background-color: #0e40a3;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -26,14 +43,17 @@ form{
   font-size: calc(10px + 2vmin);
   color: white;
 }
-
-
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.weather {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.weather button {
+  width: 70px;
+  border-radius: 5px;
+}
+.toggle {
+  border-radius: 5px;
 }

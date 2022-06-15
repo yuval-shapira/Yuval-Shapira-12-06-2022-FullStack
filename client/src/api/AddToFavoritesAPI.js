@@ -1,11 +1,9 @@
 export default async function addToFavoritesAPI(cityData) {
     try{
-        const url = `http://localhost:3030/api/favorites`;
+        const url = `http://localhost:3030/api/city/favorites`;
         const dataToSave = {
         cityKey: cityData.Key,
-        LocalizedName: cityData.LocalizedName,
-     //   Temperature: cityData.Temperature.Metric.Value,
-     //   WeatherText: cityData.WeatherText
+        LocalizedName: cityData.LocalizedName
     }
     const response = await fetch(url, {
         method: "POST",
