@@ -1,4 +1,3 @@
-
 import weather_model from "./weather.model.mjs";
 import express from "express";
 import fetch from "node-fetch";
@@ -21,12 +20,16 @@ router.get("/:cityKey", async (req, res) => {
       const response = await fetch(api);
       const data = await response.json();
       if (exist) {
-        await weather_model.updateOne({ cityKey: req.params.cityKey },
+        await weather_model
+          .updateOne(
+            { cityKey: req.params.cityKey },
             {
               Temperature: data[0].Temperature.Metric.Value,
               WeatherText: data[0].WeatherText,
               epochTime: currentEpochTime,
-            }).exec();
+            }
+          )
+          .exec();
       } else {
         await weather_model.create({
           cityKey: req.params.cityKey,

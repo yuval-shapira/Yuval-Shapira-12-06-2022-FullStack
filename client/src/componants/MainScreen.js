@@ -16,13 +16,13 @@ export default function MainScreen() {
   }
   async function handleFormSubmit(e) {
     e.preventDefault();
-    if(e.target.value !== ""){
-    const cities = await getCitiesListAPI(citySearch);
-    cities ? setCitiesListAcc(cities) : window.alert("No city found");}
+    if (e.target.value !== "") {
+      const cities = await getCitiesListAPI(citySearch);
+      cities ? setCitiesListAcc(cities) : window.alert("No city found");
+    }
   }
 
   async function handleCityClick(cityKey, cityName) {
-
     const cityDetails = await getCityWeatherAPI(cityKey);
     if (cityDetails) {
       cityDetails.LocalizedName = cityName;
@@ -33,7 +33,8 @@ export default function MainScreen() {
     }
   }
   async function addToFavorites(cityData) {
-    const response = await addToFavoritesAPI(cityData);
+    await addToFavoritesAPI(cityData);
+    window.alert("City added to favorites");
   }
   return (
     <>

@@ -1,24 +1,29 @@
-import React from "react";
+import { useState, useEffect } from "react";
 import getAllFavoritesAPI from "../api/GetAllFavoritesAPI";
 import deleteFavoriteAPI from "../api/DeleteFavoriteAPI";
 
-export default async function FavoritesList() {
-  async function deleteFavorite(cityKey) {
-    const response = await deleteFavoriteAPI(cityKey);
-    console.log(response);
-    //getAllFavorites();
+export default function FavList() {
+  const [favorites, setFavorites] = useState(["hello", "world"]);
+  useEffect(() => {
+    getAllFavorites();
+  }, []);
+
+  async function getAllFavorites() {
+    const response = await getAllFavoritesAPI();
+    setFavorites(response);
   }
-  const favorites = await getAllFavoritesAPI();
-  console.log("-----Array-------getAllFavoritesAPI--------------");
-  console.log(favorites);
-  //  setFavorites(response);
-  //}
+  async function deleteFavorite(cityKey) {
+    await deleteFavoriteAPI(cityKey);
+    await getAllFavorites();
+  }
   return (
     <ul>
       {favorites.map((favorite) => (
-        <li key={favorite.cityKey}>
-          {favorite.LocalizedName}
-          <button onClick={() => deleteFavorite(favorite.Key)}>Delete</button>
+        <li className="favorite" key={favorite.cityKey}>
+          <button onClick={() => deleteFavorite(favorite.cityKey)}>
+            Delete
+          </button>
+          <div>{favorite.LocalizedName}</div>
         </li>
       ))}
     </ul>
