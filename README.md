@@ -10,14 +10,26 @@
 
 get clone the repository
 
-cd into the project folder, run `npm install`
+cd into the project folder
 
-Open 2 terminals
+### Open 2 terminals
 
-1st terminal: cd into client folfer and run `npm start`
+### 1st terminal:
+
+cd into client folfer
+
+run `npm install`
+
+run `npm start`
 
 Client Port [http://localhost:3000](http://localhost:3000)
 
-2nd terminal: cd into server folder and run `npm run dev`
+### 2nd terminal:
+
+cd into server folder
+
+run `npm install`
+
+run `npm run dev`
 
 Server Port [http://localhost:3030](http://localhost:3030)
